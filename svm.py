@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pandas as pd
@@ -14,13 +15,15 @@ class SVMClassifier:
         self.kernel_type = kerenl_type
 
     def train_test(self):
-        Cs = np.logspace(-6, -1, 10)
+        # Cs = np.logspace(-6, -1, 10)
+        Cs = np.arange(start=1.0, stop=15.0, step=0.25)
         grid_search = GridSearchCV(estimator=SVC(kernel=self.kernel_type), cv=10, param_grid=dict(C=Cs), n_jobs = -1)
         grid_search.fit(self.X_train, self.y_train)
         print("Best training score: {:0.3f}".format(grid_search.best_score_))
         print("Best para: {}".format(grid_search.best_params_))
-        test_score = grid_search.score(self.X_test, self.y_test)
-        print("Test performance: {:0.3f}".format(test_score))
+        mypred = grid_search.predict(self.X_test)
+        print("Test performance:")
+        print(classification_report(self.y_test, mypred, digits=3))
         self.clf = grid_search.best_estimator_
 
     def visualize_feat_importance(self, feature_names, kind, top_features=10):
