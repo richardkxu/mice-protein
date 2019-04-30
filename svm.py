@@ -17,7 +17,10 @@ class SVMClassifier:
     def train_test(self):
         # Cs = np.logspace(-6, -1, 10)
         Cs = np.arange(start=1.0, stop=15.0, step=0.25)
-        grid_search = GridSearchCV(estimator=SVC(kernel=self.kernel_type), cv=10, param_grid=dict(C=Cs), n_jobs = -1)
+        # kernels = ["linear", "poly", "rbf", "sigmoid"]
+        # parameters = {'kernel': kernels, 'C': Cs}
+        parameters = dict(C=Cs)
+        grid_search = GridSearchCV(estimator=SVC(kernel=self.kernel_type), cv=10, param_grid=parameters, n_jobs=-1)
         grid_search.fit(self.X_train, self.y_train)
         print("Best training score: {:0.3f}".format(grid_search.best_score_))
         print("Best para: {}".format(grid_search.best_params_))

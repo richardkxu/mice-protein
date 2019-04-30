@@ -1,0 +1,34 @@
+Current binary classification category: behavior
+Best training score: 1.000
+Best para: {'C': 1.0, 'kernel': 'linear'}
+Test performance:
+             precision    recall  f1-score   support
+
+          0      1.000     1.000     1.000       133
+          1      1.000     1.000     1.000       137
+
+avg / total      1.000     1.000     1.000       270
+
+
+Current binary classification category: genotype
+Best training score: 0.995
+Best para: {'C': 5.0, 'kernel': 'rbf'}
+Test performance:
+             precision    recall  f1-score   support
+
+          0      1.000     1.000     1.000       134
+          1      1.000     1.000     1.000       136
+
+avg / total      1.000     1.000     1.000       270
+
+
+Current binary classification category: treatment
+Best training score: 1.000
+Best para: {'C': 3.5, 'kernel': 'rbf'}
+Test performance:
+             precision    recall  f1-score   support
+
+          0      1.000     1.000     1.000       133
+          1      1.000     1.000     1.000       137
+
+avg / total      1.000     1.000     1.000       270
